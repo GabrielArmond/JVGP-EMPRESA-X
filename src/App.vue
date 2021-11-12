@@ -1,28 +1,59 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <layout-navigation></layout-navigation>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LayoutNavigation from './components/layout/LayoutNavigation.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    LayoutNavigation
   }
+  // data: () => ({ isLogged: false }),
+  // mounted () {
+  //   // toda vez que o usuario logar ou deslogar, este comando vai ser chamado
+  //   this.$firebase.auth().onAuthStateChanged(user => {
+  //     // se user for verdadeiro user = uid, senao user = null
+  //     window.uid = user ? user.uid : null
+  //     this.isLogged = !!user
+
+  //     // se usuario existir, vai para o home, senao volta para o login
+  //     this.$router.push({ name: window.uid ? 'home' : 'login' })
+
+  //     setTimeout(() => {
+  //       this.$root.$emit('Spinner::hide')
+  //     }, 300)
+  //   })
+  // }
 }
 </script>
 
 <style>
-#app {
+* {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+#app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.app-title {
+  margin-bottom: 5px;
+}
+
+.app-subtitle {
+  margin-top: 5px;
+}
+
+.container {
+  width: 370px;
+  height: 100%;
 }
 </style>
