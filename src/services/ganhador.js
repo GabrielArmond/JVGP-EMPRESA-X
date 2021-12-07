@@ -19,10 +19,10 @@ const verificaSe = letra => {
 
 const ganhador = partida => {
   const xResult = verificaSe`X`.ganhou(partida)
+  const oResult = verificaSe`O`.ganhou(partida)
   if (xResult.ganhou) {
     return xResult
   } else {
-    const oResult = verificaSe`O`.ganhou(partida)
     if (oResult) {
       return oResult
     }

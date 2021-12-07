@@ -1,25 +1,19 @@
 <template>
   <nav class="navigation">
     <ul>
-      <li><a href="/">HOME</a></li>
-      <li><a href="/JV">Jogo da Velha</a></li>
+      <li>
+        <a href="/">Home</a>
+        <i class="fas fa-home"></i>
+      </li>
+      &nbsp; |
+      <li><a href="/JV">Jogo da Velha</a> <i class="fas fa-gamepad"></i></li>
     </ul>
-    <layout-logout />
   </nav>
 </template>
 
 <script>
-import LayoutLogout from './LayoutLogout.vue'
 export default {
-  components: {
-    LayoutLogout
-  }
-
-  // computed: {
-  //   routerLinks() {
-  //     return this.$router.options.routes.filter(route => r.name !== 'login')
-  //   }
-  // }
+  components: {}
 }
 </script>
 
@@ -29,30 +23,35 @@ export default {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: #ededed;
+  background-color: var(--light);
+  font-size: 12pt !important;
+  font-weight: bold;
+  border-bottom: 1px solid var(--dark);
+  padding: 10px;
 }
 .navigation ul {
   padding: 0px;
   margin: 0px;
-  background-color: #ededed;
   list-style: none;
 }
+
 .navigation ul li {
   display: inline;
 }
 
-.navigation ul li a {
-  padding: 2px 10px;
+.navigation ul li:hover {
+  color: var(--hover);
+}
 
+.navigation ul li a {
+  padding: 2px 5px;
   /* visual do link */
-  background-color: #ededed;
-  color: #333;
   text-decoration: none;
-  border-bottom: 3px solid #ededed;
+  color: var(--dark);
 }
 
 .navigation ul li a:hover {
-  color: #6d6d6d;
-  border-bottom: 3px solid #ea0000;
+  color: var(--hover);
+  background-color: var(--light);
 }
 </style>

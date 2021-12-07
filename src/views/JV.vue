@@ -1,32 +1,49 @@
 <template>
-  <div class="game">
-    <jv-board v-model="posicoes" @jogar="jogarPartida" />
-    <div class="restart">
-      <button class="reset" @click="reiniciar()">Reiniciar</button>
-    </div>
-    <div>
-      <h1>
-        JOGADOR {{ vezDe }}
-        <h1 v-show="alguemGanhou">GANHOU</h1>
-      </h1>
+  <div>
+    <div class="game">
+      <div class="title-home">
+        <h1 class="app-title">Jogo da Velha Gaming Project</h1>
+        <h3 class="app-subtitle">made by Empresa X</h3>
+      </div>
+      <jv-board v-model="posicoes" @jogar="jogarPartida" />
+      <div class="restart">
+        <button class="btn reset" @click="reiniciar()">
+          Reiniciar &nbsp; <i class="fas fa-sync reset-icon"></i>
+        </button>
+      </div>
+      <div>
+        <h1 v-show="game">
+          JOGADOR "{{ vezDe }}"
+          <h1 v-show="alguemGanhou">GANHOU</h1>
+        </h1>
+      </div>
+      <question v-if="showQuestion"/>
     </div>
   </div>
 </template>
 
 <script>
 import JvBoard from '../components/jogo-da-velha/JvBoard.vue'
+import Question from '../components/questions/Question.vue'
 import ganhador from '../services/ganhador'
+
+export let vezDe = 'X'
+
+
 export default {
   name: 'JvGame',
 
   components: {
-    JvBoard
+    JvBoard,
+    Question
   },
 
   data() {
     return {
-      vezDe: 'X',
+      vezDe,
       alguemGanhou: false,
+      game: true,
+      showQuestion: true,
       posicoes: {
         A1: {
           exibir: null,
@@ -78,6 +95,7 @@ export default {
 
   methods: {
     jogarPartida(posicao) {
+      this.game = true
       let vezDeJogar = this.vezDe
       let ninguemGanhou = !this.alguemGanhou
       if (ninguemGanhou) {
@@ -105,6 +123,11 @@ export default {
         posicao.ganhou = false
       }
       self.alguemGanhou = false
+      self.game = true
+    },
+
+    switchPlayer() {
+      vezDe = vezDe === 'X' ? 'O' : 'X'
     }
   }
 }
@@ -114,7 +137,7 @@ export default {
 h1 {
   margin-bottom: 0px;
   margin-top: 0px;
-  color: #2c3e50;
+  color: var(--dark);
 }
 
 .game {
@@ -122,21 +145,30 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 10px;
 }
 .reset {
   cursor: pointer;
-  border: 1px solid #42b983;
+  border: 1px solid var(--dark);
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 20px;
   font-weight: bold;
-  color: #2c3e50;
   font-size: 12pt;
+  color: var(--dark);
   transition: 0.2s;
+  background-color: var(--light);
+}
+
+.reset-icon:hover {
+  color: var(--light);
+  transform: rotate(360deg);
+  transition: all 0.3s ease-in-out 0s;
 }
 
 .reset:hover {
-  background-color: #42b983;
+  background-color: var(--hover);
+  color: var(--light);
 }
 
 .restart {
@@ -145,5 +177,18 @@ h1 {
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.app-title {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.app-subtitle {
+  margin-top: 0px;
+}
+
+.vezDe {
+  color: var(--hover);
 }
 </style>

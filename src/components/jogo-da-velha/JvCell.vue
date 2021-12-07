@@ -25,7 +25,7 @@ export default {
 .cell {
   cursor: pointer;
   float: right;
-  border: solid 1px #42b983;
+  border: solid 1px var(--dark);
   width: 100px;
   height: 100px;
   text-align: center;
@@ -36,13 +36,10 @@ export default {
   transition: 0.2s;
 }
 .cell:hover {
-  background-color: #42b983;
+  background-color: var(--hover);
 }
 
 .ganhou {
-  background-color: #aaffaa;
-}
-.ganhou:hover {
-  background-color: #aaffaa;
+  background-color: var(--hover-win);
 }
 </style>
